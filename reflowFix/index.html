@@ -4,7 +4,7 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<title>"javaScript Practice"</title>
+	<title>"javaScript reflow&repaint Performance experiment"</title>
 	<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
 	<style type="text/css">
 	#wrapper {width: 100%; margin: 0 auto; padding: 0;}
@@ -17,38 +17,8 @@
 </body>
 </html>
 
-<!-- <script type="text/javascript" src="js/script.js"></script> -->
-<script>
-	var PubSub = {};
+<script type="text/javascript" src="js/script.js"></script>
 
-	PubSub.handlers = {};
-
-	PubSub.on = function(eventType, handler) { 
-		if (!(eventType in this.handlers)) {
-		    this.handlers[eventType] = [];
-		}
-	  	this.handlers[eventType].push(handler);
-		return this; 
-	}
-
-	PubSub.emit = function(eventType) {
-		var handlerArgs = Array.prototype.slice.call(arguments, 1); 
-		for (var i = 0; i < this.handlers[eventType].length; i++) {
-		    this.handlers[eventType][i].apply(this, handlerArgs);
-		}
-		return this; 
-	}
-
-	PubSub.info = function(){
-		console.dir("test is called.");
-	};
-
-	//main 
-	PubSub.on("test", PubSub.info);
-
-	console.dir(PubSub);
-	PubSub.emit("test");
-</script>
 
 
 
