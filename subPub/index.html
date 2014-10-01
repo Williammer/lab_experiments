@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>"javaScript Practice"</title>
+	<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+	<style type="text/css">
+	#wrapper {width: 100%; margin: 0 auto; padding: 0;}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		
+	</div>
+</body>
+</html>
+
+<!-- <script type="text/javascript" src="js/script.js"></script> -->
+<script>
+	var PubSub = {};
+
+	PubSub.handlers = {};
+
+	PubSub.on = function(eventType, handler) { 
+		if (!(eventType in this.handlers)) {
+		    this.handlers[eventType] = [];
+		}
+	  	this.handlers[eventType].push(handler);
+		return this; 
+	}
+
+	PubSub.emit = function(eventType) {
+		var handlerArgs = Array.prototype.slice.call(arguments, 1); 
+		for (var i = 0; i < this.handlers[eventType].length; i++) {
+		    this.handlers[eventType][i].apply(this, handlerArgs);
+		}
+		return this; 
+	}
+
+	PubSub.info = function(){
+		console.dir("test is called.");
+	};
+
+	//main 
+	PubSub.on("test", PubSub.info);
+
+	console.dir(PubSub);
+	PubSub.emit("test");
+</script>
+
+
+
+
+
