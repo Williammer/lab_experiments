@@ -1,3 +1,8 @@
+<?	
+	$curPath = getcwd();
+	$fileList = scandir($curPath, 1);
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -24,10 +29,15 @@
 	<div id="wrapper">
 		<h2>Experiments</h2>
 		<ul class="menu">
-			<li><a href="reflowFix">reflowFix</a></li>
-			<li><a href="subPub">subPub</a></li>
-			<li><a href="webWorker">webWorker</a></li>
-			<li><a href="ajax2.0">ajax2.0</a></li>
+		<? 
+			foreach ($fileList as $file) {
+				if(is_dir($file) && substr($file, 0, 1) != '.'){
+		?>
+					<li><a href="<?=$file;?>"><?=$file;?></a></li>
+		<?
+				}
+			}
+		?>
 		</ul>
 	</div>
 </body>
