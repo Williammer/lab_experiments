@@ -41,13 +41,12 @@ virtual-dom-batch := (patches: Array<DOMPatch>) => Array<DOMPatch>
 virtual-dom-patch := (elem: DOMElement, patches: Array<DOMPatch>) => void
 
 ## * react.evtDelegation 
-clickCaptureListeners['a'](event);
-clickCaptureListeners['a.b'](event);
-clickCaptureListeners['a.b.c'](event);
-clickBubbleListeners['a.b.c'](event);
-clickBubbleListeners['a.b'](event);
-clickBubbleListeners['a'](event);
-
+clickCaptureListeners\['a'\](event);
+clickCaptureListeners\['a.b'\](event);
+clickCaptureListeners\['a.b.c'\](event);
+clickBubbleListeners\['a.b.c'\](event);
+clickBubbleListeners\['a.b'\](event);
+clickBubbleListeners\['a'\](event);
 
 ## License
 	The MIT License (MIT)
