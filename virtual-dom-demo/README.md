@@ -1,6 +1,6 @@
-# Some valuable concepts upon virtual-dom.
+# Valuable concepts of virtual-dom
 
-## virtual-dom design
+## * virtual-dom design
 type Component<T> := {
     render: (data: T) => VirtualDOMNode,
     compare?: (left: T, right: T) => Boolean,
@@ -40,7 +40,7 @@ virtual-dom-batch := (patches: Array<DOMPatch>) => Array<DOMPatch>
  
 virtual-dom-patch := (elem: DOMElement, patches: Array<DOMPatch>) => void
 
-## react.evtDelegation 
+## * react.evtDelegation 
 clickCaptureListeners['a'](event);
 clickCaptureListeners['a.b'](event);
 clickCaptureListeners['a.b.c'](event);
