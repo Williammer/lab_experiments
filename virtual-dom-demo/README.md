@@ -1,3 +1,12 @@
+# Installation and run
+```bash
+(sudo) npm install
+```
+
+```bash
+npm run browserify-files
+```
+
 # Valuable concepts of virtual-dom
 
 ## * virtual-dom design
