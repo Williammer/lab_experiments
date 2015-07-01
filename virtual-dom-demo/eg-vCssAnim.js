@@ -1,32 +1,46 @@
-/*
-  http://requirebin.com/?gist=250e6e59aa40d5ff0fcc
-*/
+var mercury = require("mercury")
+var h = mercury.h
+var nextTick = require('next-tick')
+var rnd_str = require('random-string')
 
-Item.render = function(state) {
-  return h('li', {
-    'class' : new ItemInsertHook('item'),
-  }, [
-    h('div.text', state.text), 
-    h('button', {
-      'ev-click' : mercury.event(...)
-    }, 'Remove or something...'),
-  ]);
+var events = {
+  addItem: mercury.input()
+};
+
+var state = mercury.struct({
+  events: events,
+  items: mercury.array([Item(rnd_str({length: 10}))])
+});
+
+events.addItem(function() {
+  state.items.push(Item(rnd_str({length: 10})));
+});
+
+function Item(desc) {
+  var state = mercury.struct({
+    desc: mercury.value(desc)
+  });
+
+  return state;
 }
 
+Item.render = function(state) {
+  var removing = false;
+  
+  return h('li', {
+    'class' : new ItemInsertHook('item tr'),
+  }, [
+    h('div.desc', state.desc),
+  ]);
+}
+    
 function ItemInsertHook(value) {
   this.value = value;
 }
-
+    
 ItemInsertHook.prototype.hook = function(elem, propName) {
-  
-  // Here we want to see if this is a newly created dom element
-  // or an element that was inserted before and is revisited.
-  // The way to check for that in this case is see if the element is 
-  // attached to the dom.
-  // Newly created element will not be attached to the dom when hook is executed.
-  
-  if (!document.body.contains(elem)) {
-    elem.setAttribute(propName, this.value + ' inserting');
+  if (!elem.childNodes.length) {
+    elem.setAttribute(propName, this.value + ' opaque');
 
     nextTick(function () {
       elem.setAttribute(propName, this.value + '');
@@ -34,15 +48,33 @@ ItemInsertHook.prototype.hook = function(elem, propName) {
   }
 }
 
-//Elswhere at the top level of application:
-function renderItemsList(state) {
+function renderItemsList(state) {  
   return h('ul#item-list', [
     state.items.map(function(item) {return Item.render(item);})
   ]);
 }
 
-/*
-  li.item.inserting { opacity : 0.01; }
-  li.item { transition: opacity 0.2s ease-in-out; }
-  li.item { opacity : 0.99; }
-*/
+function render(state) {
+  
+  return h('#main', [
+    h('button', {
+      'ev-click' : mercury.event(state.events.addItem)
+    }, 'Add item'),
+    renderItemsList(state)
+  ]);
+}
+
+mercury.app(document.body, state, render);
+
+var insertCSS = require('insert-css')
+
+var css = 'label {display: block}\n';
+css += 'ul {list-style-type: none;}\n';
+css += 'li.item {max-width: 300px; height: 30px;' 
+    + 'border-radius: 2px;'
+    + 'box-shadow: 0 1px 1px #ccc;'
+    + 'padding: 0.7em; margin: 0 0 5px}\n';
+css += 'li.item.opaque {opacity : 0.01; transform: translateZ(0);}\n';
+css += 'li.item.tr {transition: opacity 0.75s ease-in-out;}\n';
+css += 'li.item {opacity : 0.99; transform: translateZ(0);}\n';
+insertCSS(css);
