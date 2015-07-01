@@ -14,5 +14,8 @@
     "virtual-dom": "^2.0.1",
     "random-string": "^0.1.2"
   },
+  "scripts": {
+    "browserify-files": "browserify eg-vNode.js eg-vWgt.js eg-virtualDom.js eg-vHooks.js eg-vCssAnim.js -o index.js"
+  },
   "license": "MIT"
 }
