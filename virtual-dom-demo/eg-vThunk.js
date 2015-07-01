@@ -1,3 +1,8 @@
+var diff = require("virtual-dom").diff
+var patch = require("virtual-dom").patch
+var h = require("virtual-dom").h
+var createElement = require("virtual-dom").create
+
 // Demo 1
 // Looks like the idea of singleton. In essence, it's a special process of vnode.
 
@@ -26,12 +31,8 @@ patches = diff(Thunk1, Thunk2)
     // Nothing will happen
 patch(thunkElem, patches)
 
-
 // Demo 2
-var diff = require("virtual-dom").diff
-var patch = require("virtual-dom").patch
-var h = require("virtual-dom").h
-var createElement = require("virtual-dom").create
+
     // Our GenericThunk will take 3 arguments
     // renderFn is the function that will generate the VNode
     // cmpFn is the function that will be used to compare state to see if an update is necessary.
