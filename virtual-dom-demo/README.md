@@ -1,8 +1,11 @@
 # Installation and run
+
+Install depended packages.
 ```bash
 (sudo) npm install
 ```
 
+then browserify files with this command.
 ```bash
 npm run browserify-files
 ```
