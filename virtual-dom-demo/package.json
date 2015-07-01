@@ -1,0 +1,18 @@
+{
+  "name": "v-dom-demos",
+  "version": "0.0.1",
+  "repository": "https://github.com/Williammer/lab_experiments",
+  "description": "Demos for virtual DOM",
+  "main": "index.js",
+  "devDependencies": {
+    "browserify": "^10.2.4"
+  },
+  "dependencies": {
+    "next-tick": "^0.2.2",
+    "mercury": "^14.0.0",
+    "insert-css": "^0.2.0",
+    "virtual-dom": "^2.0.1",
+    "random-string": "^0.1.2"
+  },
+  "license": "MIT"
+}
