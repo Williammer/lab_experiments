@@ -5,7 +5,7 @@ var createElement = require('virtual-dom/create-element');
 
 // 1: Create a function that declares what the DOM should look like
 function render(count)  {
-    return h('div', {
+    return h('div#render-count', {
         style: {
             textAlign: 'center',
             lineHeight: (100 + count) + 'px',
