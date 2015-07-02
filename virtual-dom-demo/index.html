@@ -1,16 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Virtual dom demo</title>
     <style>
-      
+    .show {
+        display: block;
+    }
+    
+    #render-count,
+    #my-red-box,
+    #counter-widget,
+    #main {
+        display: none;
+    }
     </style>
-    <!-- NOTE: need external dependency of virtual-dom, can use npm install virtual-dom -->
-    <!-- NOTE: need Browserify to build eg-**.js files into index.js -->
-    <script defer src="index.js"></script>
-  </head>
-  <body>
-    <!-- demo code -->
-  </body>
+</head>
+<body>
+    <div><button id="btn-render-count">render-count</button></div><br/>
+    <div><button id="btn-red-box">red-box</button></div><br/>
+    <div><button id="btn-main">main</button></div>
+    <div><button id="btn-counter-widget">counter-widge</button></div>
+</body>
+
 </html>
+<!-- NOTE: need external dependency of virtual-dom, can use npm install-->
+
+<!-- NOTE: need Browserify to build eg-**.js files into index.js -->
+<script defer src="index.js"></script>
+<script defer type="text/javascript">
+(function(root) {
+  root.setTimeout(function(){
+    var renderCount = document.getElementById("render-count"),
+      myRedBox = document.getElementById("my-red-box"),
+      main = document.getElementById("main"),
+      counterWidget = document.getElementById("counter-widget"),
+
+      btnRenderCount = document.getElementById("btn-render-count"),
+      btnRedBox = document.getElementById("btn-red-box"),
+      btnCounterWidget = document.getElementById("btn-counter-widget"),
+      btnMain = document.getElementById("btn-main");
+
+    btnRenderCount.addEventListener("click", function(){
+      renderCount.style.display = "block";
+      myRedBox.style.display = "none";
+      main.style.display = "none";
+      counterWidget.style.display = "none";
+    });
+
+    btnRedBox.addEventListener("click", function(){
+      renderCount.style.display = "none";
+      myRedBox.style.display = "block";
+      main.style.display = "none";
+      counterWidget.style.display = "none";
+    });
+
+    btnMain.addEventListener("click", function(){
+      renderCount.style.display = "none";
+      myRedBox.style.display = "none";
+      counterWidget.style.display = "none";
+      main.style.display = "block";
+    });
+
+    btnCounterWidget.addEventListener("click", function(){debugger
+      renderCount.style.display = "none";
+      myRedBox.style.display = "none";
+      counterWidget.style.display = "block";
+      main.style.display = "none";
+    });
+  }, 100);
+  
+})(window);
+</script>
