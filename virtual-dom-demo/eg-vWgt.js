@@ -17,6 +17,7 @@ OddCounterWidget.prototype.init = function() {
     // We could get the same result using:
     // return createElement(h("div", "Count is: " + this.count))
     var divElem = document.createElement("div")
+        divElem.id = "counter-widget"
     var textElem = document.createTextNode("Count is: " + this.count)
     divElem.appendChild(textElem)
     return divElem
