@@ -1,0 +1,27 @@
+{
+  "name": "get-started",
+  "version": "0.0.0",
+  "description": "get start demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Williammer/lab_experiments"
+  },
+  "keywords": [
+    "hapijs"
+  ],
+  "author": "williamHe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Williammer/lab_experiments/issues"
+  },
+  "homepage": "https://github.com/Williammer/lab_experiments",
+  "dependencies": {
+    "hapi": "^8.8.0",
+    "good": "^6.3.0",
+    "good-console": "^5.0.2"
+  }
+}
