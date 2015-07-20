@@ -1,0 +1,30 @@
+{
+  "name": "http-cache",
+  "version": "0.0.0",
+  "description": "http-cache demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Williammer/lab_experiments"
+  },
+  "keywords": [
+    "hapi",
+    "cache"
+  ],
+  "author": "williamHe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Williammer/lab_experiments/issues"
+  },
+  "homepage": "https://github.com/Williammer/lab_experiments",
+  "dependencies": {
+    "hapi": "^8.8.0",
+    "catbox-mongodb": "^1.1.0",
+    "catbox-redis": "^1.0.5",
+    "good": "^6.3.0",
+    "good-console": "^5.0.2"
+  }
+}
