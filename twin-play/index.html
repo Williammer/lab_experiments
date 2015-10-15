@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>twine binding playground</title>
+</head>
+
+<body>
+    <input id= "el-input" type="text" bind="color" value="">
+    <strong bind="color.length"></strong> characters used.
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/twine/dist/twine.js"></script>
+    <script>
+    (function(global) {
+	    var data = {
+	        "color": "blue",
+	        "name": {
+	            "first": "John",
+	            "last": "Smith"
+	        },
+	        "showBox": true,
+	        "available": false,
+	        "state": "hidden",
+	        "yourInterest": ""
+	    };
+
+	    var elInput = document.querySelector("#el-input");
+
+	    Twine.reset(data).bind().refresh();
+	    // Twine.reset(data).bind(data, elInput).refresh();
+    })(window);
+    </script>
+</body>
+
+</html>
