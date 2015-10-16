@@ -434,6 +434,7 @@ Twine.bindingTypes = {
       }
     };
   },
+  // attr binding
   'bind-attribute': function(node, context, definition) {
     var fn, lastValue;
     fn = wrapFunctionString(definition, '$context,$root', node);
