@@ -1,50 +1,77 @@
 (function WorkerPolyfill() {
-  // helper functions.
+    // helper functions.
 
     function DualEvent() {
-        var cycle, scheduling_queue,
+        var cycle, scheduling_queue, useArrQueue = false;
             timer = (typeof setImmediate !== "undefined") ?
-            function timer(fn) { return setImmediate(fn); } :
+            function timer(fn) {
+                return setImmediate(fn); } :
             setTimeout;
 
         // Note: using a queue instead of array for efficiency
-        function Queue() {
-            var first, last, item;
+        function Queue(arrQueue) {
+            if (arrQueue) {
+                // Array impl
+                var queue = [],
+                    item = {};
+            } else {
+                // LList impl
+                var first, last, item;
 
-            function Item(fn) {
-                this.fn = fn;
-                this.next = void 0;
+                function Item(fn) {
+                    this.fn = fn;
+                    this.next = void 0;
+                }
             }
 
             return {
                 add: function add(fn) {
-                    item = new Item(fn);
-                    if (last) {
-                        last.next = item;
-                    } else {
-                        first = item;
-                    }
-                    last = item;
-                    item = void 0;
-                },
-                drain: function drain() {
-                    var f = first;
-                    first = last = cycle = null;
+                    if (arrQueue) {
+                        // Array impl
+                        item.fn = fn;
+                        queue.push(item);
 
-                    while (f) {
-                        f.fn();
-                        f = f.next;
+                    } else {
+                        // LList impl
+                        item = new Item(fn);
+                        if (last) {
+                            last.next = item;
+                        } else {
+                            first = item;
+                        }
+                        last = item;
+                        item = void 0;
+                    }
+                },
+                flush: function flush() {
+                    if (arrQueue) {
+                        // Array impl
+                        while(queue.length > 0){
+                            item = queue.shift();
+                            item.fn && item.fn();
+                        }
+                    } else {
+                        // LList impl
+                        var f = first;
+                        first = last = cycle = null;
+
+                        while (f) {
+                            f.fn();
+                            f = f.next;
+                        }
                     }
                 }
             };
         }
 
-        scheduling_queue = Queue();
+        // useArrQueue = true;
+        console.log("[config] useArrQueue: "+useArrQueue);
+        scheduling_queue = Queue(useArrQueue);
 
         function schedule(fn) {
             scheduling_queue.add(fn);
             if (!cycle) {
-                cycle = timer(scheduling_queue.drain);
+                cycle = timer(scheduling_queue.flush);
             }
         }
 
