@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Worker Polyfill</title>
+</head>
+
+<body>
+    <h1>Worker Polyfill</h1>
+    <script>
+    var staT = new Date();
+    var w = new Worker("child.js");
+    w.addEventListener("message", function(evt) {
+        console.log("from test.html:", evt.data);
+        console.log("time spent:", (new Date() - staT));
+    });
+    w.postMessage("hello world");
+    // from child.js: hello world
+    // from test.html: HELLO WORLD
+    </script>
+</body>
+
+</html>
