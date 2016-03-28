@@ -10,6 +10,8 @@
 <body>
     <input id= "el-input" type="text" bind="color" value="">
     <strong bind="color.length"></strong> characters used.
+
+    <input type="button" id="btn" value="change color to red" />
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/twine/dist/twine.js"></script>
     <script>
@@ -27,6 +29,20 @@
 	    };
 
 	    var elInput = document.querySelector("#el-input");
+
+	    var btn = document.querySelector("#btn");
+
+	    setInterval(function(){
+	    	if(data.color === "blue"){
+	    		data.color = "red";
+	    	} else if(data.color === "red"){
+	    		data.color = "blue";
+	    	}
+	    }, 1000);
+
+	    global.getColor = function(){
+	    	return data.color;
+	    };
 
 	    Twine.reset(data).bind().refresh();
 	    // Twine.reset(data).bind(data, elInput).refresh();
