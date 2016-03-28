@@ -176,8 +176,9 @@
                         null,
                         globalPropNames.concat([xhr.responseText])
                     );
-                    
+                    // fake the remote Worker context with Function apply
                     try {
+                        // run remote worker operations first
                         worker.apply(e2, globalProps);
 
                         // emitBuffer outside Event now
