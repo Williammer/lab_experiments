@@ -1,4 +1,3 @@
-const print = input => console.log(input)
 const upper = input => input.toUpperCase()
 
 const show = (info, ...others) => { // Spread/Rest turn arguments into real array
