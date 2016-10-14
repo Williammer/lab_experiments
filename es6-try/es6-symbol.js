@@ -20,11 +20,8 @@ print(`get even it's local symbol:`); // get: (key) => Symbol
 print(Symbol.for("uniqueIDFor"));
 
 
-// 3. Symbol for iterator use case: every [Symbol.iterator] DataStructure can be for-of or use Iterator methods.
-// ......
-
-
-// 4. Symbol for instanceOf vs. class inherit
+// Symbol for iterator use case: every [Symbol.iterator] DataStructure can be for-of or use Iterator methods.
+// 3. Symbol for instanceOf vs. class inherit
 class MyArraySymbol {
     static[Symbol.hasInstance](instance) {
         return Array.isArray(instance);
@@ -35,10 +32,6 @@ print(`instanceof of Symbol.hasInstance: ${[] instanceof MyArraySymbol}`); // tr
 
 
 // r. class OOP things
-class MyArrayInherit extends Array {
-    // static staticFn {
-
-    // }
-}
+class MyArrayInherit extends Array {}
 
 print(`instanceof of extended class: ${[] instanceof MyArrayInherit}`); // false ?
