@@ -1,6 +1,13 @@
+/*
+ * Arrow function; Spread/Rest; Iterator/for..of
+ */
+
+
+// basic arrow function
 const upper = input => input.toUpperCase()
 
-const show = (info, ...others) => { // Spread/Rest turn arguments into real array
+// Spread/Rest turn arguments into real array
+const show = (info, ...others) => {
     print(`param: ${info}`)
 
     if (!(others.length > 0)) {
@@ -18,6 +25,8 @@ const show = (info, ...others) => { // Spread/Rest turn arguments into real arra
 
 show("I love u.", "and you", "and youAll")
 
+// closure in arrow function
+// "compose functions"
 const compose = functions => arg => functions.reduce((composed, f) => f(composed), arg)
 
 const f1 = (x) => x*2
